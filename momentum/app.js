@@ -1,9 +1,10 @@
-const daysOfWeek = ["mon","tue","wed","thu","fri","sat"];
+//object
+const player = {
+    //property
+    name: "bomin",
+    poits: "10",
+    fat: true,
+};
 
-// Get Item from Array
-console.log(daysOfWeek);
-
-// Add one more day to the array
-daysOfWeek.push("sun")
-
-console.log(daysOfWeek)
+console.log(palyer);
+console.log(palyer.name);
