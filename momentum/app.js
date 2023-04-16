@@ -1,8 +1,18 @@
-const player = {
-    name: "bomin",
-    sayHello: function(otherPersonsName){
-        console.log("hello!"+ otherPersonsName + " nice to meet you");
+const calculator = {
+    plus: function(a,b){
+        return a+b;
     },
-}
+    minus: function(a,b){
+        return a-b;
+    },
+    times: function(a,b){
+        return a*b;
+    },
+    divide: function(a,b){
+        return a/b;
+    },
+    power: function(a,b){
+        return a**b;
+    }
+};
 
-player.sayHello("lynn");
