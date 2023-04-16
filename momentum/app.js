@@ -1,10 +1,8 @@
-//object
 const player = {
-    //property
     name: "bomin",
-    poits: "10",
-    fat: true,
-};
+    sayHello: function(otherPersonsName){
+        console.log("hello!"+ otherPersonsName + " nice to meet you");
+    },
+}
 
-console.log(palyer);
-console.log(palyer.name);
+player.sayHello("lynn");
