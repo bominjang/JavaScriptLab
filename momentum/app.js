@@ -1,3 +1,3 @@
-const age = prompt("How old are you?");
+const title = document.querySelector(".hello h1");
 
-console.log(typeof age); 
+console.log(title);
