@@ -1,18 +1,7 @@
 const http = require("http");
-let count = 0;
-
 const server = http.createServer((req, res) => {
-    log(count);
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "text/plain");
-    res.write("hello\n");
-    setTimeout(() => {
-        res.end("Node.js");
-    }, 2000);
+    res.setHeader("Content-Type", "text/html"); //응답의 헤더 설정
+    res.end("OK"); //OK를 응답하고 종료
 });
 
-function log(count) {
-    console.log((count += 1));
-}
-
-server.listen(8000);
+server.listen("3000", () => console.log("OK 서버 시작!")); //접속 대기
