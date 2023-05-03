@@ -15,7 +15,8 @@ http.createServer((req, res) => {
     .listen("3000", () => console.log("라우터를 만들어보자!"));
 
 const user = (req, res) => {
-    res.end(`[user] name : andy, age: 30`);
+    const userInfo = url.parse(req.url, true).query; //쿼리스트림 데이터를 userInfo에 할당
+    res.end(`[user] name: ${userInfo.name}, age: ${userInfo.age}`);//결과값으로 이름과 나이 설정
 };
 
 const feed = (req, res) => {
