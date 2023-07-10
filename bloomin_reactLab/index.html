@@ -13,7 +13,8 @@
       // [counter값, modifier]
       const [counter, setCounter] = React.useState(0);
       const onClick = () => {
-        setCounter(counter + 1); //알아서 업데이트, 알아서 렌더링
+        //setCounter(counter + 1); //알아서 업데이트, 알아서 렌더링
+        setCounter((current) => current + 1); //더 안전한 방법. 현재 값 +1을 새로운 state으로 return
       };
       return (
         <div>
