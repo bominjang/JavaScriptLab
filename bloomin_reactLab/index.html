@@ -9,17 +9,26 @@
   <script type="text/babel">
     const root = document.getElementById("root");
     function App() {
-      //컴포넌트 안에서 변수를 관리
-      // [counter값, modifier]
-      const [counter, setCounter] = React.useState(0);
-      const onClick = () => {
-        //setCounter(counter + 1); //알아서 업데이트, 알아서 렌더링
-        setCounter((current) => current + 1); //더 안전한 방법. 현재 값 +1을 새로운 state으로 return
+      //useState가 return하는 첫번째 value : 현재의 값.
+      //두 번째 value: 현재의 값을 수정해주는 modifier함수
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) => {
+        setMinutes(event.target.value);
       };
       return (
         <div>
-          <h3>Total clicks: {counter}</h3>
-          <button onClick={onClick}>Click me</button>
+          <h1>Super Converter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            onChange={onChange}
+          />
+          <h4> You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" type="number" />
         </div>
       );
     }
