@@ -3,24 +3,24 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Btn({ text, changeValue }) {
+    //fontSize=14라면, fontSize가 세팅안된채로 넘어와도 default 14로 두겠다.
+    function Btn({ text, fontSize = 14 }) {
       console.log(text, "was rendered");
-      //Btn(props)
-      //버튼으로부터 받은 값 : props. 첫 번째이자 유일한 인자
       return (
         <div>
           <button
-            onClick={changeValue}
             style={{
               backgroundColor: "tomato",
               color: "white",
               padding: "10px 20px",
               border: 0,
               borderRadius: 10,
+              font: { fontSize },
             }}
           >
             {text}
@@ -28,14 +28,16 @@
         </div>
       );
     }
-    const MemorizedBtn = React.memo(Btn); //MemorizedBtn of BTN
+    //<Btn text={14} fontSize={"Continue"} />이면 오류가 나오는 것. 아래와 같이 세팅해두면!
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
     function App() {
-      const [value, setValue] = React.useState("Save Changes");
-      const changeValue = () => setValue("Revert Changes");
       return (
         <div>
-          <MemorizedBtn text={value} changeValue={changeValue} />
-          <MemorizedBtn text="Continue" />
+          <Btn text={"Save Changes"} fontSize={20} />
+          <Btn text={"Continue"} />
         </div>
       );
     }
