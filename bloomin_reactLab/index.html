@@ -7,31 +7,35 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Btn({ banana, big }) {
+    function Btn({ text, changeValue }) {
+      console.log(text, "was rendered");
       //Btn(props)
       //버튼으로부터 받은 값 : props. 첫 번째이자 유일한 인자
-      console.log(banana, big);
-      return (
-        <button
-          style={{
-            backgroundColor: "tomato",
-            color: "white",
-            padding: "10px 20px",
-            border: 0,
-            borderRadius: 10,
-            fontSize: big ? 18 : 15,
-          }}
-        >
-          {banana}
-        </button>
-      );
-    }
-
-    function App() {
       return (
         <div>
-          <Btn banana="Save Change" big={true} />
-          <Btn banana="Continue" big={false} />
+          <button
+            onClick={changeValue}
+            style={{
+              backgroundColor: "tomato",
+              color: "white",
+              padding: "10px 20px",
+              border: 0,
+              borderRadius: 10,
+            }}
+          >
+            {text}
+          </button>
+        </div>
+      );
+    }
+    const MemorizedBtn = React.memo(Btn); //MemorizedBtn of BTN
+    function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+      return (
+        <div>
+          <MemorizedBtn text={value} changeValue={changeValue} />
+          <MemorizedBtn text="Continue" />
         </div>
       );
     }
