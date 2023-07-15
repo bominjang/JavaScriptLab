@@ -1,37 +1,25 @@
 import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 
-function App() {
-  const [counter, setValue] = useState(0);
-  const [keyword, setKeyword] = useState("");
-  const onClick = () => setValue((prev) => prev + 1);
-  const onChange = (event) => {
-    setKeyword(event.target.value);
-  };
-  console.log("I run all the time");
+function Hello() {
+  function byeFn() {
+    console.log("bye :(");
+  }
+  function hiFn() {
+    console.log("create :)");
+    return byeFn; //컴포넌트가 destroy될 때 bye를 호출
+  }
+  useEffect(hiFn, []);
+  return <h1>Hello</h1>;
+}
 
-  useEffect(() => {
-    console.log("I run only once....");
-  }, []);
-  useEffect(() => {
-    console.log("I run when 'keyword' changes ....");
-  }, [keyword]); //keyword가 변경될때만 console.log 수행하도록
-  useEffect(() => {
-    console.log("I run when 'counter' changes ....");
-  }, [counter]); //counter 변경될때만 console.log 수행하도록
-  useEffect(() => {
-    console.log("I run when counter or keyword change");
-  }, [keyword, counter]);
+function App() {
+  const [showing, setShowing] = useState(false);
+  const onClick = () => setShowing((prev) => !prev);
   return (
     <div>
-      <input
-        value={keyword}
-        onChange={onChange}
-        type="text"
-        placeholder="Search here...."
-      />
-      <h1 className={styles.title}>{counter}</h1>
-      <button onClick={onClick}>click me</button>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "show"}</button>
     </div>
   );
 }
