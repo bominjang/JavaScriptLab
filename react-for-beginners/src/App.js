@@ -2,14 +2,16 @@ import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 
 function Hello() {
-  function byeFn() {
-    console.log("bye :(");
-  }
-  function hiFn() {
-    console.log("create :)");
-    return byeFn; //컴포넌트가 destroy될 때 bye를 호출
-  }
-  useEffect(hiFn, []);
+  useEffect(function () {
+    console.log("hi:)");
+    return function () {
+      console.log("bye :(");
+    };
+  }, []);
+  useEffect(() => {
+    console.log("hi :)");
+    return () => console.log("bye :(");
+  }, []);
   return <h1>Hello</h1>;
 }
 
